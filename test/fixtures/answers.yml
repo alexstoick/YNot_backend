@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  answer: MyString
+  poster_id: 1
+  receiver_id: 1
+  seen: false
+
+two:
+  answer: MyString
+  poster_id: 1
+  receiver_id: 1
+  seen: false
