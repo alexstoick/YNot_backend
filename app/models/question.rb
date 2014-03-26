@@ -5,7 +5,10 @@ class Question < ActiveRecord::Base
 
   # Scopes
   #
-  default_scope { order("questions.created_at DESC") }
+
+  default_scope {
+    order("questions.created_at DESC")
+  }
 
   scope :not_seen, -> () {
     where("questions.seen = false")

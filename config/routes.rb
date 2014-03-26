@@ -6,5 +6,6 @@ YnotBackend::Application.routes.draw do
 
   resources :questions, only: [] do
     resources :answers, only: :create
+    match "seen", to: "answers#seen", via: :get
   end
 end
