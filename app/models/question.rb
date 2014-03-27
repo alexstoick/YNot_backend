@@ -14,17 +14,6 @@ class Question < ActiveRecord::Base
     where("questions.property_sent = false")
   }
 
-  scope :sent, -> () {
-    where("questions.property_sent = true")
-  }
-  scope :answered, -> {
-    joins("join answers on answers.question_id = questions.id")
-  }
-
-  scope :not_answered, -> {
-    joins("right outer join answers on answers.question_id = questions.id")
-  }
-
   # Instance methods
   #
 
