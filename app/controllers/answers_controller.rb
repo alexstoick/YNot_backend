@@ -3,6 +3,7 @@ class AnswersController < ApplicationController
   before_action :authenticate
 
   # GET /answers
+  #
   def index
     answers = @current_user.answers
     render json: answers
