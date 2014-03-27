@@ -1,26 +1,29 @@
 class UsersController < ApplicationController
+
+  before_action :authenticate, only: :show
+
   def show
-    user = User.find(params[:id])
-    questions_posted_object = user.questions_posted.answered.not_seen.select("questions.id, questions.body, questions.created_at").includes(:answer)
+    user = @current_user
+    questions_posted_object = user.questions_posted.answered.not_sent.select("questions.id, questions.body, questions.created_at").includes(:answer)
 
-    questions_posted = []
+    # questions_posted = []
 
-    questions_posted_object.each do |question|
-      current_question = {}
-      current_question[:id] = question.id
-      current_question[:body] = question.body
-      current_question[:created_at] = question.created_at
-      current_question[:has_answer] = question.has_answer
+    # questions_posted_object.each do |question|
+    #   current_question = {}
+    #   current_question[:id] = question.id
+    #   current_question[:body] = question.body
+    #   current_question[:created_at] = question.created_at
+    #   current_question[:has_answer] = question.has_answer
 
-      current_question[:answer] = {}
-      current_question[:answer][:id] = question.answer.id
-      current_question[:answer][:body] = question.answer.body
-      current_question[:answer][:created_at] = question.answer.created_at
+    #   current_question[:answer] = {}
+    #   current_question[:answer][:id] = question.answer.id
+    #   current_question[:answer][:body] = question.answer.body
+    #   current_question[:answer][:created_at] = question.answer.created_at
 
-      questions_posted << current_question
-    end
+    #   questions_posted << current_question
+    # end
 
-    questions_received_object = user.questions_received.not_seen.select("questions.id, questions.body, questions.created_at").includes(:answer)
+    questions_received_object = user.questions_received.not_answered.not_sent.select("questions.id, questions.body, questions.created_at").includes(:answer)
 
     questions_received = []
 

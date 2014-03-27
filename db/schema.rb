@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140319164547) do
+ActiveRecord::Schema.define(version: 20140327201142) do
 
   create_table "answers", force: true do |t|
     t.string   "body"
-    t.boolean  "seen"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "question_id"
@@ -25,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140319164547) do
     t.string   "body"
     t.integer  "poster_id"
     t.integer  "receiver_id"
-    t.boolean  "seen"
+    t.boolean  "property_sent"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -35,6 +34,7 @@ ActiveRecord::Schema.define(version: 20140319164547) do
     t.string   "phone_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "auth_token"
   end
 
 end

@@ -10,15 +10,19 @@ class Question < ActiveRecord::Base
     order("questions.created_at DESC")
   }
 
-  scope :not_seen, -> () {
-    where("questions.seen = false")
+  scope :not_sent, -> () {
+    where("questions.property_sent = false")
   }
 
-  scope :seen, -> () {
-    where("questions.seen = true")
+  scope :sent, -> () {
+    where("questions.property_sent = true")
   }
   scope :answered, -> {
     joins("join answers on answers.question_id = questions.id")
+  }
+
+  scope :not_answered, -> {
+    joins("right outer join answers on answers.question_id = questions.id")
   }
 
   # Instance methods

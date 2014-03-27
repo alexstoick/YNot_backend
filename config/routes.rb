@@ -4,8 +4,10 @@ YnotBackend::Application.routes.draw do
     resources :questions, only: :create
   end
 
-  resources :questions, only: [] do
+  resources :questions, only: [:show] do
     resources :answers, only: :create
-    match "seen", to: "answers#seen", via: :get
+    match "sent", to: "questions#sent", via: :get
   end
+
+  resource :answers, only: :index
 end
